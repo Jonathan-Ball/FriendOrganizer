@@ -9,7 +9,9 @@ namespace FriendOrganizer.DataAccess
         public FriendOrganizerDbContext() : base("FriendOrganizerDb")
         {
         }
-        public DbSet<Friend>? Friends { get; set; }
+        public DbSet<Friend> Friends { get; set; }
+        public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+        public DbSet<FriendPhoneNumber> FriendPhoneNumbers { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -17,3 +19,7 @@ namespace FriendOrganizer.DataAccess
         }
     }
 }
+
+// TO UPDATE / MIGRATE use:
+// "Update-Database -ConnectionString "Data Source=.;Initial Catalog=FriendOrganizer;Integrated Security=True" -ConnectionProviderName "System.Data.SqlClient"
+
