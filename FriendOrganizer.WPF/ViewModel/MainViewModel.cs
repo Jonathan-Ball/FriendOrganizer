@@ -17,7 +17,7 @@ namespace FriendOrganizer.UI.ViewModel
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly Func<IFriendDetailViewModel> _friendDetailViewModelCreator;
-        private IFriendDetailViewModel _friendDetailViewModel;
+        private IDetailViewModel _detailViewModel;
         private readonly IMessageDialogService _messageDialogService;
 
         public MainViewModel(INavigationViewModel navigationViewModel,
@@ -29,23 +29,23 @@ namespace FriendOrganizer.UI.ViewModel
             _friendDetailViewModelCreator = friendDetailViewModelCreator;
             _messageDialogService = messageDialogService;
 
-            _eventAggregator.GetEvent<OpenFriendDetailViewEvent>()
-                .Subscribe(OnOpenFriendDetailView);
-            _eventAggregator.GetEvent<AfterFriendDeletedEvent>().Subscribe(AfterFriendDeleted);
+            _eventAggregator.GetEvent<OpenDetailViewEvent>()
+                .Subscribe(OnOpenDetailView);
+            _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
 
-            CreateNewFriendCommand = new DelegateCommand(OnCreateNewFriendExecute);
+            CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
 
             NavigationViewModel = navigationViewModel;
         }
 
-        public ICommand CreateNewFriendCommand { get; }
+        public ICommand CreateNewDetailCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
-        public IFriendDetailViewModel FriendDetailViewModel
+        public IDetailViewModel DetailViewModel
         {
-            get { return _friendDetailViewModel; }
+            get { return _detailViewModel; }
             private set
             {
-                _friendDetailViewModel = value;
+                _detailViewModel = value;
                 OnPropertyChanged();
             }
         }
@@ -54,9 +54,9 @@ namespace FriendOrganizer.UI.ViewModel
         {
             await NavigationViewModel.LoadAsync();
         }
-        private async void OnOpenFriendDetailView(int? friendId)
+        private async void OnOpenDetailView(OpenDetailViewEventArgs args)
         {
-            if (FriendDetailViewModel != null && FriendDetailViewModel.HasChanges)
+            if (DetailViewModel != null && DetailViewModel.HasChanges)
             {
                 var result = _messageDialogService.ShowOkCancelDialog("You have made changes to this friend. If you navigate away you will lose the changes.", "Question");
                 if (result == MessageDialogResult.Cancel)
@@ -64,17 +64,23 @@ namespace FriendOrganizer.UI.ViewModel
                     return;
                 }
             }
-            FriendDetailViewModel = _friendDetailViewModelCreator();
-            await FriendDetailViewModel.LoadAsync(friendId);
-        }
-        private void OnCreateNewFriendExecute()
-        {
-            OnOpenFriendDetailView(null);
-        }
-        private void AfterFriendDeleted(int friendId)
-        {
-            FriendDetailViewModel = null;
 
+            switch (args.ViewModelName)
+            {
+                case nameof(FriendDetailViewModel):
+                    DetailViewModel = _friendDetailViewModelCreator();
+                    break;
+            }
+
+            await DetailViewModel.LoadAsync(args.Id);
+        }
+        private void OnCreateNewDetailExecute(Type viewModelType)
+        {
+            OnOpenDetailView(new OpenDetailViewEventArgs { ViewModelName = viewModelType.Name });
+        }
+        private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
+        {
+            DetailViewModel = null;
         }
 
     }

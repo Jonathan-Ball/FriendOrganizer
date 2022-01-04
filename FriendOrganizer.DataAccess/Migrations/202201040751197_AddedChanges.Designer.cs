@@ -7,13 +7,13 @@ namespace FriendOrganizer.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddedProgrammingLanguage : IMigrationMetadata
+    public sealed partial class AddedChanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedProgrammingLanguage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedChanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "202201021636378_AddedProgrammingLanguage"; }
+            get { return "202201040751197_AddedChanges"; }
         }
         
         string IMigrationMetadata.Source
