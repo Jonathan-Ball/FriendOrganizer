@@ -7,7 +7,7 @@ namespace FriendOrganizer.UI.Data.Repositories
         where TEntity : class
         where TContext : DbContext
     {
-        protected readonly TContext? Context;
+        protected readonly TContext Context;
 
         protected GenericRepository(TContext context)
         {

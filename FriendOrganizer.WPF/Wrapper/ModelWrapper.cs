@@ -13,7 +13,7 @@ namespace FriendOrganizer.UI.Wrapper
         }
 
         public T Model { get; }
-        protected virtual TValue GetValue<TValue>([CallerMemberName] string propertyName = null)
+        protected virtual TValue GetValue<TValue>([CallerMemberName] string? propertyName = null)
         {
             return (TValue)typeof(T).GetProperty(propertyName).GetValue(Model);
         }

@@ -33,6 +33,19 @@ namespace FriendOrganizer.DataAccess.Migrations
 
             context.FriendPhoneNumbers.AddOrUpdate(pn => pn.Number,
                 new FriendPhoneNumber { Number = "+27 123 4567", FriendId = context.Friends.First().Id });
+
+            context.Meetings.AddOrUpdate(m => m.Title,
+            new Meeting
+            {
+                Title = "Programming in C#",
+                DateFrom = new DateTime(2022, 2, 1),
+                DateTo = new DateTime(2200, 12, 31),
+                Friends = new List<Friend>
+                {
+                    context.Friends.Single(f => f.FirstName == "Jonathan" && f.LastName == "Ball"),
+                    context.Friends.Single(f => f.FirstName == "Steven" && f.LastName == "Quirk"),
+                }
+            });
         }
     }
 }

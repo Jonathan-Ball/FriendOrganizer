@@ -17,9 +17,8 @@ namespace FriendOrganizer.UI.ViewModel
     public class FriendDetailViewModel : DetailViewModelBase, IFriendDetailViewModel
     {
         private readonly IFriendRepository _friendRepository;
-        private FriendWrapper _friend;
-        private FriendPhoneNumberWrapper _selectedPhoneNumber;
-        private bool _hasChanges;
+        private FriendWrapper? _friend;
+        private FriendPhoneNumberWrapper? _selectedPhoneNumber;
         private readonly IMessageDialogService _messageDialogService;
         private readonly IProgrammingLanguageLookupDataService _programmingLanguageLookupDataService;
 
@@ -49,7 +48,7 @@ namespace FriendOrganizer.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-        public FriendPhoneNumberWrapper SelectedPhoneNumber
+        public FriendPhoneNumberWrapper? SelectedPhoneNumber
         {
             get { return _selectedPhoneNumber; }
             set
@@ -66,11 +65,17 @@ namespace FriendOrganizer.UI.ViewModel
 
         protected override async void OnDeleteExecute()
         {
+            if (await _friendRepository.HasMeetingsAsync(Friend.Id))
+            {
+                _messageDialogService.ShowInfoDialog($"{Friend.FirstName} {Friend.LastName} can't be deleted as this friend is a part of atleast one meeting.");
+                return;
+            }
+
             var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete the friend {Friend.FirstName} {Friend.LastName}?", "Question");
             if (result == MessageDialogResult.OK)
             {
                 _friendRepository.Remove(Friend.Model);
-                _friendRepository.SaveAsync();
+                await _friendRepository.SaveAsync();
                 RaiseDetailDeletedEvent(Friend.Id);
             }
         }
