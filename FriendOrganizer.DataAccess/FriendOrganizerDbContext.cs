@@ -23,5 +23,5 @@ namespace FriendOrganizer.DataAccess
 }
 
 // TO UPDATE / MIGRATE use:
-// "Update-Database -ConnectionString "Data Source=.;Initial Catalog=FriendOrganizer;Integrated Security=True" -ConnectionProviderName "System.Data.SqlClient"
+// Update-Database -ConnectionString "Data Source=.;Initial Catalog=FriendOrganizer;Integrated Security=True" -ConnectionProviderName "System.Data.SqlClient"
 
