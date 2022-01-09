@@ -41,7 +41,7 @@
 
         <DockPanel Grid.Row="8" Margin="10">
             <StackPanel DockPanel.Dock="Right">
-                <Button Content="Add" Width="125" Margin="10"
+                <Button Content="Add" Width="125" Margin="0"
                         Command="{Binding AddPhoneNumberCommand}"/>
                 <Button Content="Remove" Width="125" Margin="10"
                         Command="{Binding RemovePhoneNumberCommand}"/>
