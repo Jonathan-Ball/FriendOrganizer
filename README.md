@@ -12,8 +12,12 @@ You would then need to run
 [**Using:**](url)
 
 Windows Presentation Foundation
+
 Microsoft SQL Server
+
 Entity Framework
+
 MVVM
+
 
 This could also be done with an MVC REST API to the backend database but in this case the application was running on the same machine that had the SQL Server installed on.
