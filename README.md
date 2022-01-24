@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/55206201/150756287-e963eee4-4b1a-45ea-b261-1990fa847fe5.png)
+![fo](https://user-images.githubusercontent.com/55206201/150758659-1cc4fa9d-0e29-4b65-9401-fb59e45bfc31.png)
 
 _Sometimes keeping track of all of your friends contact / meetup information can become cumbersome. Not anymore with the Friend Organizer._
 
