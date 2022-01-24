@@ -7,6 +7,7 @@ _Sometimes keeping track of all of your friends contact / meetup information can
 This program used a local SQL Db with Entity Framework to develop. As such you would need to make sure the computer running this program has full SQL installed.
 
 You would then need to run 
+`Update-Database -ConnectionString "Data Source=.;Initial Catalog=FriendOrganizer;Integrated Security=True" -ConnectionProviderName "System.Data.SqlClient"`
 
 [**Using:**](url)
 Windows Presentation Foundation
