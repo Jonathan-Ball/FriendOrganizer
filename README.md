@@ -4,7 +4,9 @@ _Sometimes keeping track of all of your friends contact / meetup information can
 
 [**Pre-requisites**](url)
 
-As this program uses a SQL Db with Entity Framework you would need to update the database.
+This program used a local SQL Db with Entity Framework to develop. As such you would need to make sure the computer running this program has full SQL installed.
+
+You would then need to run 
 
 [**Using:**](url)
 Windows Presentation Foundation
