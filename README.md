@@ -10,6 +10,7 @@ You would then need to run
 `Update-Database -ConnectionString "Data Source=.;Initial Catalog=FriendOrganizer;Integrated Security=True" -ConnectionProviderName "System.Data.SqlClient"`
 
 [**Using:**](url)
+
 Windows Presentation Foundation
 Microsoft SQL Server
 Entity Framework
