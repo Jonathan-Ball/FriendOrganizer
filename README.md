@@ -2,11 +2,11 @@
 
 _Sometimes keeping track of all of your friends contact / meetup information can become cumbersome. Not anymore with the Friend Organizer._
 
-**Pre-requisites**
+[**Pre-requisites**](url)
 
 As this program uses a SQL Db with Entity Framework you would need to update the database.
 
-**Using:**
+[**Using:**](url)
 Windows Presentation Foundation
 Microsoft SQL Server
 Entity Framework
