@@ -4,12 +4,20 @@ _Sometimes keeping track of all of your friends contact / meetup information can
 
 [**Pre-requisites**](url)
 
-As this program uses a SQL Db with Entity Framework you would need to update the database.
+This program used a local SQL Db with Entity Framework to develop. As such you would need to make sure the computer running this program has full SQL installed.
+
+You would then need to run 
+`Update-Database -ConnectionString "Data Source=.;Initial Catalog=FriendOrganizer;Integrated Security=True" -ConnectionProviderName "System.Data.SqlClient"`
 
 [**Using:**](url)
+
 Windows Presentation Foundation
+
 Microsoft SQL Server
+
 Entity Framework
+
 MVVM
+
 
 This could also be done with an MVC REST API to the backend database but in this case the application was running on the same machine that had the SQL Server installed on.
